@@ -1,11 +1,15 @@
-class ApplicationController < ActiveRecord :: Base
+require './config/environment'
 
-    configure do
-        set :views, 'app/views'
-        enable :sessions
-        set :session_secret, "secret"
-    end
+class ApplicationController < Sinatra::Base
+
+    # configure do
+    #     set :public_folder, 'public'
+    #     set :views, 'app/views'
+    #     enable :sessions
+    #     set :session_secret, "secret"
+    #   end
 
     get '/' do
         "Hello World"
     end
+end
