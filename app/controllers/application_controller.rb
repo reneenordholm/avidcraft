@@ -10,7 +10,25 @@ class ApplicationController < Sinatra::Base
       end
 
     get '/' do
-        binding.pry
-        erb :'/index'
+        erb :index
     end
+
+    get '/' do
+
+        # loads the homepage
+        erb :index
+      end
+    
+      helpers do
+        # checks if user is logged in
+            def logged_in?
+                !!session[:user_id]
+            end
+    
+        # pulls from session hash to determine the current user
+            def current_user
+                User.find(session[:user_id])
+            end
+        end
+    
 end
