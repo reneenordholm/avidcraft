@@ -1,5 +1,12 @@
-class User < ActiveRecord::Base
-    has_secure_password
-    has_many :items
+class UserController < ApplicationController
+
+    # create
+    get '/signup' do
+        if logged_in?
+            redirect "/items"
+        end
+    
+    erb :"users/create_user"
+    end
 
 end

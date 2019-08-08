@@ -1,4 +1,3 @@
-class Item < ActiveRecord::Base
-    belongs_to :user
+class ItemsController < ApplicationController
 
 end
