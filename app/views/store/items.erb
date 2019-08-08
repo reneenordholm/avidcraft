@@ -1,6 +1,6 @@
 <h3>Items Index</h3>
 
-<p>Welcome, <%= @user.username %>! Here's the Items:<br>
+<p>Welcome, <%= @user.username %>! Here's all the Items:<br>
 
 <% @items.each do |item| %>
 <p><a href="/items/<%= item.id %>"><%= item.title %></a> by <em>

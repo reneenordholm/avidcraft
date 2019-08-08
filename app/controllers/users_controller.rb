@@ -57,6 +57,16 @@ class UsersController < ApplicationController
         end
     end
 
+    # read
+    get '/users/:slug' do
+        # slugs username
+        # finds user based on slug
+        @user = User.find_by_slug(params[:slug]) 
+    
+        #shows all sing users tweets
+        erb :"/users/show"
+    end
+
     get '/logout' do
         # lets a user logout if they are already logged in
         # does not let a user logout if not logged in

@@ -1,0 +1,8 @@
+<h3>All items for <em><%= @user.username %></em>:</h3>
+<ul>
+<% @user.items.each do |item| %>
+  <li><%= item.title %></li>
+<% end %>
+</ul>
+
+<a href="/items">Go Back</a> to items index
