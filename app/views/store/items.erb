@@ -1,5 +1,11 @@
-Items index
-<br><br>
+<h3>Items Index</h3>
+
+<p>Welcome, <%= @user.username %>! Here's the Items:<br>
+
+<% @items.each do |item| %>
+<p><a href="/items/<%= item.id %>"><%= item.title %></a> by <em>
+<a href="/users/<%= item.user.username %>"><%= item.user.username %></a></em></p>
+<% end %>
 
 <form action="/logout" method="GET">
   <input type="submit" value="Log Out">
