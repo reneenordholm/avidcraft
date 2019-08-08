@@ -32,6 +32,22 @@ class ItemsController < ApplicationController
         end
     end
 
+    # update
+    get '/items/:id/edit' do
+        # sets item id to instance variable to that item's data can be viewed/edited
+        @item = Item.find_by(params[:id])
+
+        # lets a user use item edit form if logged in
+        # does not let a user edit a item they did not create
+        # if user is logged in can edit their own item
+        if logged_in? && @item.user_id == current_user.id
+            erb :'store/edit_item'
+        else
+            # does not load edit form if user not logged in, redirects to home page
+            redirect '/'
+        end
+    end
+
 
 
 end
