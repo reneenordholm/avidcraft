@@ -23,7 +23,7 @@ class UsersController < ApplicationController
             # adds user_id to sessions hash
             # log user in
             session[:user_id] = user.id
-            # signup directs user to twitter index
+            # signup directs user to items index
             redirect "/items"
         else
             redirect "/signup"
