@@ -1,12 +1,16 @@
 <h1>Edit Your Item</h1>
 
 <form method="post" action="/items/<%= @item.id %>">
-  <input id="hidden" type="hidden" name="_method" value="patch">
-  <label for="content">Title:</label>
-  <input type="text" name="content" value="<%= @item.title %>"><br>
-    <label for="content">DEscription:</label>
-  <input type="text" name="content" value="<%= @item.description %>"><br>
-    <label for="content">Price:</label>
-  <input type="text" name="content" value="<%= @item.price %>"><br>
-  <input type="submit" value="submit">
+    <input id="hidden" type="hidden" name="_method" value="patch">
+
+    <label for="title">Title:</label>
+    <input type="text" name="title" value="<%= @item.title %>"><br>
+
+    <label for="description">Description:</label>
+    <input type="text" name="description" value="<%= @item.description %>"><br>
+
+    <label for="price">Price:</label>
+    <input type="text" name="price" value="<%= @item.price %>"><br>
+
+    <input type="submit" value="Submit">
 </form> 

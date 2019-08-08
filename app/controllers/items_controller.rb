@@ -48,6 +48,22 @@ class ItemsController < ApplicationController
         end
     end
 
+    # update
+    patch '/items/:id' do
+        # sets item id to instance variable to that items's data can be viewed/edited
+        item = Item.find_by(id: params[:id])
+    
+        # does not let user edit text with blank content
+        if !params[:title].empty? && !params[:description].empty? && !params[:price].empty?
+            # update/saves edited item and sends back to that items's page
+            item.update(title: params[:title], description: params[:description], price: params[:price])
+            redirect to "/items/#{item.id}"
+        else
+            # if params empty redirects to edit form
+            redirect to "/items/#{item.id}/edit"
+        end
+    end
+
 
 
 end
