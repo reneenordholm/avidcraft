@@ -59,9 +59,12 @@ class UsersController < ApplicationController
 
     # read
     get '/users/:slug' do
+        if !logged_in?
+            redirect "/"
+        end
         # slugs username
         # finds user based on slug
-        @user = User.find_by_slug(params[:slug]) 
+        @user = User.find_by_slug(params[:slug])  
     
         #shows all sing users tweets
         erb :"/users/show"
