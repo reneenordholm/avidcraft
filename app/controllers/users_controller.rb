@@ -1,4 +1,4 @@
-class UserController < ApplicationController
+class UsersController < ApplicationController
 
     # create
     get '/signup' do
@@ -38,6 +38,23 @@ class UserController < ApplicationController
 
         # loads the login page
         erb :"/users/login"
+    end
+
+    post '/login' do
+        # searches for username in db that matches username entered at login page
+        user = User.find_by(username: params[:username])
+
+
+        # verifies password in db matches password entered at login
+        if user && user.authenticate(params[:password])
+            # if both username are found/pw matches sets user_id to session id, enabling cookies 
+            session[:user_id] = user.id
+            # loads the tweets index after login
+            redirect '/items'
+        else
+            # if username/pw not found or entered incorrectly sends user back to login page
+            redirect '/login'
+        end
     end
 
 
