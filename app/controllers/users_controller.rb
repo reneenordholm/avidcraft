@@ -57,6 +57,14 @@ class UsersController < ApplicationController
         end
     end
 
+    get '/logout' do
+        # lets a user logout if they are already logged in
+        # does not let a user logout if not logged in
+        # clears sessions so user cannot access certain areas of site without logging in again
+        session.clear
+        redirect '/'
+	end
+
 
 
 end
