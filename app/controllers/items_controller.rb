@@ -17,4 +17,21 @@ class ItemsController < ApplicationController
          end
     end
 
+    # read
+    get '/items/:id' do
+        # logged in user can view a single item
+        # logged out user cannot view a single item
+        if logged_in?
+            # sets item id to instance variable to that items's data can be viewed
+            @item = Item.find_by_id(params[:id])
+
+            erb :'store/show_item'
+        else
+            # if not logged in redirects user to home page
+            redirect to '/'
+        end
+    end
+
+
+
 end
