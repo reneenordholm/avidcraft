@@ -49,7 +49,7 @@ class UsersController < ApplicationController
         if user && user.authenticate(params[:password])
             # if both username are found/pw matches sets user_id to session id, enabling cookies 
             session[:user_id] = user.id
-            # loads the tweets index after login
+            # loads the items index after login
             redirect '/items'
         else
             # if username/pw not found or entered incorrectly sends user back to login page
