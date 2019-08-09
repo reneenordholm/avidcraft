@@ -11,9 +11,9 @@ class ItemsController < ApplicationController
             @items = Item.all
 
             # loads items index
-            erb :'store/items'
+            erb :"store/items"
         else
-            redirect to "/"
+            redirect to '/'
          end
     end
 
@@ -23,7 +23,7 @@ class ItemsController < ApplicationController
     # user can create item if logged in
     # user cannot view new item form if not logged in
     if logged_in?
-      erb :'/store/new_item'
+      erb :"/store/new_item"
     else
       redirect '/'
     end
@@ -34,8 +34,7 @@ class ItemsController < ApplicationController
     # does not let user create a blank item or leave any fields blank
     if !params[:title].empty? && !params[:description].empty? && !params[:price].empty?
       # item is saved as logged in user
-      item = Item.create(title: params[:title], description: params[:description], price: params[:price], user: current_user)
-      item.save
+      Item.create(title: params[:title], description: params[:description], price: params[:price], user: current_user)
             
       redirect '/items'
     else
@@ -51,7 +50,7 @@ class ItemsController < ApplicationController
             # sets item id to instance variable so that items's data can be viewed
             @item = Item.find_by_id(params[:id])
 
-            erb :'store/show_item'
+            erb :"store/show_item"
         else
             # if not logged in redirects user to home page
             redirect to '/'
@@ -67,7 +66,7 @@ class ItemsController < ApplicationController
         # does not let a user edit a item they did not create
         # if user is logged in can edit their own item
         if logged_in? && @item.user_id == current_user.id
-            erb :'store/edit_item'
+            erb :"store/edit_item"
         else
             # does not load edit form if user not logged in, redirects to home page
             redirect '/'
@@ -76,7 +75,7 @@ class ItemsController < ApplicationController
 
     # update
     patch '/items/:id' do
-        # sets item id to instance variable to that items's data can be viewed/edited
+        # sets item id to instance variable so that items's data can be viewed/edited
         item = Item.find_by(id: params[:id])
     
         # does not let user edit text with blank content
@@ -92,20 +91,19 @@ class ItemsController < ApplicationController
 
     # delete
     delete '/items/:id' do
-        # sets tweet id to instance variable to that tweet's data can be viewed/edited
+        # sets item id to instance variable to that item's data can be viewed/edited
         item = Item.find_by_id(params[:id])
     
-        # allows user to delete tweet if logged in
-        # does lot let user delete tweet they did not create
+        # allows user to delete item if logged in
+        # does not let user delete item they did not create
         if item.user_id == current_user.id
             item.delete
         end
     
-        # send user to tweet index after deletion
-        # does not load/let user delete tweet if not logged in
+        # send user to item index after deletion
+        # does not load/let user delete item if not logged in
         redirect '/items'
-  end
-
+    end
 
 
 end

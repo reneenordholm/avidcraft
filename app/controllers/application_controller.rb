@@ -10,10 +10,6 @@ class ApplicationController < Sinatra::Base
       end
 
     get '/' do
-        erb :index
-    end
-
-    get '/' do
 
         # loads the homepage
         erb :index

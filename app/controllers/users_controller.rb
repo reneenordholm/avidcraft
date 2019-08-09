@@ -3,7 +3,7 @@ class UsersController < ApplicationController
     # create
     get '/signup' do
         if logged_in?
-            redirect "/items"
+            redirect '/items'
         end
     
     erb :"users/create_user"
@@ -24,16 +24,16 @@ class UsersController < ApplicationController
             # log user in
             session[:user_id] = user.id
             # signup directs user to items index
-            redirect "/items"
+            redirect '/items'
         else
-            redirect "/signup"
+            redirect '/signup'
         end
     end
 
     get '/login' do
         # does not let user view login page if already logged in
         if logged_in?
-            redirect "/items"
+            redirect '/items'
         end
 
         # loads the login page
@@ -60,13 +60,13 @@ class UsersController < ApplicationController
     # read
     get '/users/:slug' do
         if !logged_in?
-            redirect "/"
+            redirect '/'
         end
         # slugs username
         # finds user based on slug
         @user = User.find_by_slug(params[:slug])  
     
-        #shows all sing users tweets
+        #shows all of selected user's items
         erb :"/users/show"
     end
 
@@ -77,7 +77,5 @@ class UsersController < ApplicationController
         session.clear
         redirect '/'
 	end
-
-
 
 end
