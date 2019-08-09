@@ -37,7 +37,7 @@ class ItemsController < ApplicationController
       item = Item.create(title: params[:title], description: params[:description], price: params[:price], user: current_user)
       item.save
             
-      redirect '/items/:id'
+      redirect '/items'
     else
       redirect to '/items/new_item'
     end
