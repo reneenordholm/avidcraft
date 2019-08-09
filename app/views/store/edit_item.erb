@@ -12,5 +12,12 @@
     <label for="price">Price:</label>
     <input type="text" name="price" value="<%= @item.price %>"><br>
 
+    Delete photo/upload new photo<br>
+
     <input type="submit" value="Submit">
 </form> 
+
+<br><br>
+<a href="/items/<%= @item.id %>">Go back</a> to item
+<br><br>
+<a href="/items">Go back</a> to items index

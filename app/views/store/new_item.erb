@@ -1,0 +1,22 @@
+<h3><%= current_user.username %> create a new item!</h3>
+
+  <form action='/items' method="post">
+    <label for="title">Title:</label>
+    <input type="text" name="title" value="<%= @item.title %>"><br>
+
+    <label for="description">Description:</label>
+    <input type="text" name="description" value="<%= @item.description %>"><br>
+
+    <label for="price">Price:</label>
+    <input type="text" name="price" value="<%= @item.price %>"><br>
+
+    
+    Space for picture upload<br>
+
+    <input type="submit" value="Submit">
+  </form>
+<br>
+  <a href="/items">Go back</a> to items index
+
+
+ 
