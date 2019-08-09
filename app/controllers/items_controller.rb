@@ -90,6 +90,22 @@ class ItemsController < ApplicationController
         end
     end
 
+    # delete
+    delete '/items/:id' do
+        # sets tweet id to instance variable to that tweet's data can be viewed/edited
+        item = Item.find_by_id(params[:id])
+    
+        # allows user to delete tweet if logged in
+        # does lot let user delete tweet they did not create
+        if item.user_id == current_user.id
+            item.delete
+        end
+    
+        # send user to tweet index after deletion
+        # does not load/let user delete tweet if not logged in
+        redirect '/items'
+  end
+
 
 
 end
