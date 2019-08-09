@@ -17,12 +17,38 @@ class ItemsController < ApplicationController
          end
     end
 
+  # create
+  get '/items/new' do
+    # user can view new item form if logged in
+    # user can create item if logged in
+    # user cannot view new item form if not logged in
+    if logged_in?
+      erb :'/store/new_item'
+    else
+      redirect '/'
+    end
+  end
+
+  # create
+  post '/items' do
+    # does not let user create a blank item or leave any fields blank
+    if !params[:title].empty? && !params[:description].empty? && !params[:price].empty?
+      # item is saved as logged in user
+      item = Item.create(title: params[:title], description: params[:description], price: params[:price], user: current_user)
+      item.save
+            
+      redirect '/items/:id'
+    else
+      redirect to '/items/new_item'
+    end
+  end
+
     # read
     get '/items/:id' do
         # logged in user can view a single item
         # logged out user cannot view a single item
         if logged_in?
-            # sets item id to instance variable to that items's data can be viewed
+            # sets item id to instance variable so that items's data can be viewed
             @item = Item.find_by_id(params[:id])
 
             erb :'store/show_item'
