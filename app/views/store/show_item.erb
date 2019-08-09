@@ -1,7 +1,6 @@
 <h3><%= @item.title %> | $<%= @item.price %><br><br>
-Photo of item<br><br>
+<img src="<%= @item.image %>" width=400><br><br>
 <%= @item.description %></h3>
-<br>
 
 
 <form action="/items/<%= @item.id %>/edit" method="get">

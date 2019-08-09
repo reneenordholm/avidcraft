@@ -33,9 +33,9 @@ class UsersController < ApplicationController
     get '/login' do
         # does not let user view login page if already logged in
         if logged_in?
+
             redirect '/items'
         end
-
         # loads the login page
         erb :"/users/login"
     end
@@ -43,7 +43,6 @@ class UsersController < ApplicationController
     post '/login' do
         # searches for username in db that matches username entered at login page
         user = User.find_by(username: params[:username])
-
 
         # verifies password in db matches password entered at login
         if user && user.authenticate(params[:password])

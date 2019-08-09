@@ -3,7 +3,7 @@ ENV['SINATRA_ENV'] ||= "development"
 
 # bundler loads basic set of processes for our app to run
 require 'bundler/setup'
-# lets bundler know what our default environment is
+# lets bundler know what our default environment is, intalls gems
 Bundler.require(:default, ENV['SINATRA_ENV'])
 
 # determines sql gem to use as well as designate where our db is setup 

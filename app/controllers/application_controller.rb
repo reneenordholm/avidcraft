@@ -1,7 +1,6 @@
 require './config/environment'
 
 class ApplicationController < Sinatra::Base
-
     configure do
         set :public_folder, 'public'
         set :views, 'app/views'
@@ -10,8 +9,8 @@ class ApplicationController < Sinatra::Base
       end
 
     get '/' do
-
         # loads the homepage
+        
         erb :index
       end
     
@@ -26,5 +25,4 @@ class ApplicationController < Sinatra::Base
                 User.find(session[:user_id])
             end
         end
-    
 end

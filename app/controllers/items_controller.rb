@@ -1,3 +1,5 @@
+require 'pry'
+
 class ItemsController < ApplicationController
 
     # items index
@@ -9,7 +11,7 @@ class ItemsController < ApplicationController
             @user = current_user
             # makes all items available via instance variable
             @items = Item.all
-
+   
             # loads items index
             erb :"store/items"
         else
@@ -34,7 +36,8 @@ class ItemsController < ApplicationController
     # does not let user create a blank item or leave any fields blank
     if !params[:title].empty? && !params[:description].empty? && !params[:price].empty?
       # item is saved as logged in user
-      Item.create(title: params[:title], description: params[:description], price: params[:price], user: current_user)
+      item = Item.create(title: params[:title], description: params[:description], price: params[:price], image: params[:image], user: current_user)
+      item.save
             
       redirect '/items'
     else
@@ -81,7 +84,7 @@ class ItemsController < ApplicationController
         # does not let user edit text with blank content
         if !params[:title].empty? && !params[:description].empty? && !params[:price].empty?
             # update/saves edited item and sends back to that items's page
-            item.update(title: params[:title], description: params[:description], price: params[:price])
+            item.update(title: params[:title], description: params[:description], price: params[:price], image: params[:image])
             redirect to "/items/#{item.id}"
         else
             # if params empty redirects to edit form
@@ -104,6 +107,5 @@ class ItemsController < ApplicationController
         # does not load/let user delete item if not logged in
         redirect '/items'
     end
-
 
 end
