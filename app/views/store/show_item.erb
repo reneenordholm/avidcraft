@@ -2,6 +2,8 @@
 <img src="<%= @item.image %>" width=400><br><br>
 <%= @item.description %></h3>
 
+Created by <%= @item.user.username %>
+
 
 <form action="/items/<%= @item.id %>/edit" method="get">
   <p><input type="submit" value="Edit Item"></p>

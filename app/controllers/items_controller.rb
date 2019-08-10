@@ -36,7 +36,7 @@ class ItemsController < ApplicationController
     # does not let user create a blank item or leave any fields blank
     if !params[:title].empty? && !params[:description].empty? && !params[:price].empty?
       # item is saved as logged in user
-      item = Item.create(title: params[:title], description: params[:description], price: params[:price], image: params[:image], user: current_user)
+      item = Item.create(title: params[:title], description: params[:description], price: params[:price], user: current_user, image: params[:image])
       item.save
             
       redirect '/items'
