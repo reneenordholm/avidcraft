@@ -34,7 +34,7 @@ class ItemsController < ApplicationController
   # create
   post '/items' do
     # does not let user create a blank item or leave any fields blank
-    if !params[:title].empty? && !params[:description].empty? && !params[:price].empty?
+    if !params[:title].empty? && !params[:description].empty? && !params[:price].empty? && !params[:image].empty?
       # item is saved as logged in user
       item = Item.create(title: params[:title], description: params[:description], price: params[:price], user: current_user, image: params[:image])
       item.save
@@ -63,7 +63,7 @@ class ItemsController < ApplicationController
     # update
     get '/items/:id/edit' do
         # sets item id to instance variable to that item's data can be viewed/edited
-        @item = Item.find_by(params[:id])
+        @item = Item.find_by(id: params[:id])
 
         # lets a user use item edit form if logged in
         # does not let a user edit a item they did not create
@@ -82,7 +82,7 @@ class ItemsController < ApplicationController
         item = Item.find_by(id: params[:id])
     
         # does not let user edit text with blank content
-        if !params[:title].empty? && !params[:description].empty? && !params[:price].empty?
+        if !params[:title].empty? && !params[:description].empty? && !params[:price].empty? && !params[:image].empty?
             # update/saves edited item and sends back to that items's page
             item.update(title: params[:title], description: params[:description], price: params[:price], image: params[:image])
             redirect to "/items/#{item.id}"

@@ -2,7 +2,7 @@
 <img src="<%= @item.image %>" width=400><br><br>
 <%= @item.description %></h3>
 
-Created by <%= @item.user.username %>
+Created by <a href="/users/<%= @item.user.username %>"><%= @item.user.username %></a>
 
 
 <form action="/items/<%= @item.id %>/edit" method="get">
