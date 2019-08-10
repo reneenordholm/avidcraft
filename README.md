@@ -1,6 +1,6 @@
-# AVIDcraft || A Space to Create
+# AVIDcraft
 
-Platform for creatives to sell their wares.
+A platform for creatives to sell their wares.
 
 ### Installing
 
@@ -29,7 +29,7 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/reneen
 
 ## Authors
 
-* **Renee Nordholm** - *Initial Creator* - [reneenordholm](https://github.com/reneenordholm)
+* [Renee Nordholm](https://github.com/reneenordholm) - *App Creator*
 
 ## License
 
@@ -37,7 +37,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Acknowledgments
 
-* [Flatiron School](https://flatironschool.com/) 
+* [Flatiron School](https://flatironschool.com/) - *Coding bootcamp*
 * [Micah Shute](https://github.com/micahshute) - *Flatiron instructor (thanks, dawg)*
 * [Billie Thompson of PurpleBooth](https://github.com/PurpleBooth) - *ReadMe Template*
 * You, because you're awesome. 
