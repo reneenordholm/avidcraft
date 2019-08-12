@@ -1,0 +1,12 @@
+body {
+    background-color: powderblue;
+  }
+
+  pre {
+    display: block;
+    font-family: 'Times New Roman', Times, serif;
+    white-space: pre;
+    margin: 1em 0;
+    white-space:pre-wrap;
+    max-width:400px;
+  }
