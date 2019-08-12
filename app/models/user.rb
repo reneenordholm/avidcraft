@@ -3,10 +3,10 @@ class User < ActiveRecord::Base
     has_many :items
 
     # Password can't be blank
-    # Password is too short (minimum is 6 characters)
+    # Password must be betweem 6-20 characters
     # Username can't be blank
     # Username must be unique
-    # Username is too short (minimum is 4 characters)
+    # Username minimum length is 4 characters.
     # Username cannot contain blank space numbers, special characters
     # Email can't be blank
     # Email must be in format xxxx@xxxx.xxx
