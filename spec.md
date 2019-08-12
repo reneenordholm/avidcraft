@@ -1,9 +1,10 @@
 # Specifications for the Sinatra Assessment
 
 Specs:
-- [x] Use Sinatra to build the app&nbsp;&nbsp;
+- [x] Use Sinatra to build the app<br>
         --> Sinatra provides the framework for faster web application creation in Ruby. By requiring and installing the Sinatra gem in the Gemfile, and having the root controller inherit from the Sinatra base, an application has the initial framework and capabilities availble for building an app that utilizes all the features Sinatra has to offer.
-- [X] Use ActiveRecord for storing information in a database&nbsp;&nbsp;
+- [X] Use ActiveRecord for storing information in a database
+
         --> ActiveRecord is a great management tool that acts as the "middleperson" between the application and the database. Setting up ActiveRecord in the app takes four steps-- 1. Requiring 'activerecord' and 'sinatra-activerecord' in the gemfile and running bundle install in the terminal to install the gem. 2. Letting ActiveRecord know what database language the app uses, in this AVIDcraft we are using SQL via the SQLite3 gem. 3. Setting up the connection to our database within our environment.rb file. 4. Setting the models within the app to inherit from ActiveRecord.
 - [X] Include more than one model class (e.g. User, Post, Category)&nbsp;&nbsp;
         --> AVIDcraft utilizes two models: the User class and an Item class.
