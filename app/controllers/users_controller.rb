@@ -2,42 +2,42 @@ class UsersController < ApplicationController
 
     # create
     get '/signup' do
-        if logged_in?
-            redirect '/items'
-        end
-    
-    erb :"users/create_user"
+        # does not let user view signup page if already logged in
+        redirect '/items' if logged_in?
+        
+        @user = User.new
+
+        erb :"users/create_user"
     end
 
      # create 
      post '/signup' do
         # create user
-        user = User.new(username: params[:username], email: params[:email], password: params[:password])
+        # save user to db
+        @user = User.create(username: params[:username], email: params[:email], password: params[:password])
 
-        # does not let a user sign up without a username
-        # does not let a user sign up without an email
-        # does not let a user sign up without a password
-        if !params[:username].empty? && !params[:email].empty? && !params[:password].empty?
-            # save user to db
-            user.save
-            # adds user_id to sessions hash
-            # log user in
-            session[:user_id] = user.id
+        # if any validations from User raise an error
+        if @user.errors.any?
+            # adds user_id to sessions hash, creates cookie
+            session[:user_id] = @user.id
+            # presents create_user page again, shows account creation errors
+            erb :"users/create_user"
+        else
+            # adds user_id to sessions hash, creates cookie, effectively logging user in
+            session[:user_id] = @user.id
             # signup directs user to items index
             redirect '/items'
-        else
-            redirect '/signup'
         end
     end
 
     get '/login' do
-        # does not let user view login page if already logged in
-        if logged_in?
+        @failed = false
 
-            redirect '/items'
-        end
+        # does not let user view login page if already logged in
+        redirect '/items' if logged_in?
+        
         # loads the login page
-        erb :"/users/login"
+        erb :"users/login"
     end
 
     post '/login' do
@@ -51,8 +51,9 @@ class UsersController < ApplicationController
             # loads the items index after login
             redirect '/items'
         else
+            @failed = true
             # if username/pw not found or entered incorrectly sends user back to login page
-            redirect '/login'
+            erb :"users/login"
         end
     end
 
@@ -66,7 +67,7 @@ class UsersController < ApplicationController
         @user = User.find_by_slug(params[:slug])  
     
         #shows all of selected user's items
-        erb :"/users/show"
+        erb :"users/show"
     end
 
     get '/logout' do

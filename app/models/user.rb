@@ -2,6 +2,17 @@ class User < ActiveRecord::Base
     has_secure_password
     has_many :items
 
+    # Password can't be blank
+    # Password is too short (minimum is 6 characters)
+    # Username can't be blank
+    # Username is too short (minimum is 4 characters)
+    # Username cannot contain blank space numbers, special characters
+    # Email can't be blank
+    # Email must be in format xxxx@xxxx.xxx
+    validates :username, presence: true, uniqueness: true, length: { minimum: 4 }, format: { with: /\A[a-zA-Z]+\z/, message: "cannot contain blank space numbers, special characters" }
+    validates :email, presence: true, format: { with: /A[^@s] @[^@s] z/, message: "must be in format xxxx@xxxx.xxx"}
+    validates :password, presence: true, length: { in: 6..20 }
+
     # slugs the username
     def slug
         self.username.gsub(" ", "-").downcase

@@ -1,5 +1,17 @@
 <h1>Sign Up Below:</h1>
 
+<% if @user.errors.any? %>
+  <div id="error">
+    <h2><%= @user.errors.count %> error(s) prohibited account creation:</h2>
+ 
+    <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <form action='/signup' method='post'>
     <p><label for="username">Username: </label>
     <input type="text" name="username" /><br>
