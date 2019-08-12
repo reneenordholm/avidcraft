@@ -13,15 +13,18 @@ has_many Posts)
 - [X] Include at least one belongs_to relationship on another model (e.g. Post 
 belongs_to User)
         The Item class belongs_to the User class.
-- [ ] Include user accounts with unique login attribute (username or email)
-
+- [X] Include user accounts with unique login attribute (username or email)
+        Validations in the User model are set to only allow unique usernames to register.
 - [x] Ensure that the belongs_to resource has routes for Creating, Reading, Updating and Destroying
         The ItemsController utilizes CRUD.
 - [X] Ensure that users can't modify content created by other users
         Being that AVIDcraft utilizes sessions, when user creates an item, the item is saved to the database as belonging to the user who created it.  When a logged in user clicks on an item they wish to edit, the update method in the ItemsController verifies that the user making the request is the same user who initially created the item. If  this is not a match the user is not allowed to edit the item. 
-- [ ] Include user input validations
-- [ ] BONUS - not required - Display validation failures to user with error message (example form URL e.g. /posts/new)
-- [ ] Your README.md includes a short description, install instructions, a contributors guide and a link to the license for your code
+- [X] Include user input validations
+        Validations in the User model are setup for the username (can't be blank, must be unique, must be at least 4 characters, cannot contain blank space numbers, special characters), email (can't be blank, must be in format xxxx@xxxx.xxx), and password (can't be blank, must be betweem 6-20 characters).
+- [x] BONUS - not required - Display validation failures to user with error message (example form URL e.g. /posts/new)
+        User error messages are shown when login and signup failures arise.
+- [X] Your README.md includes a short description, install instructions, a contributors guide and a link to the license for your code
+        README.md specifications met.
 
 Confirm
 - [X] You have a large number of small Git commits

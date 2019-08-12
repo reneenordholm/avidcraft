@@ -21,10 +21,10 @@ class UsersController < ApplicationController
         if @user.errors.any?
             # adds user_id to sessions hash, creates cookie
             session[:user_id] = @user.id
-            # presents create_user page again, shows account creation errors
+            # presents create_user page again, uses cookie to show shows account creation errors
             erb :"users/create_user"
         else
-            # adds user_id to sessions hash, creates cookie, effectively logging user in
+            # successful object created-- adds user_id to sessions hash, creates cookie, effectively logging user in
             session[:user_id] = @user.id
             # signup directs user to items index
             redirect '/items'
@@ -32,6 +32,7 @@ class UsersController < ApplicationController
     end
 
     get '/login' do
+        # does not trigger erb if statement on page load since accessed through get route
         @failed = false
 
         # does not let user view login page if already logged in
@@ -42,16 +43,17 @@ class UsersController < ApplicationController
     end
 
     post '/login' do
-        # searches for username in db that matches username entered at login page
+        # searches usernames in db that matches username entered at login page
         user = User.find_by(username: params[:username])
 
-        # verifies password in db matches password entered at login
+        # verifies in database that password entered by user at signup matches password entered at login
         if user && user.authenticate(params[:password])
-            # if both username are found/pw matches sets user_id to session id, enabling cookies 
+            # if both username are found AND pw matches sets user_id to session id, sets cookie session, effectively logging user in 
             session[:user_id] = user.id
             # loads the items index after login
             redirect '/items'
         else
+            # triggers if statement at page load, since accessed through post route
             @failed = true
             # if username/pw not found or entered incorrectly sends user back to login page
             erb :"users/login"

@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
     # Password can't be blank
     # Password is too short (minimum is 6 characters)
     # Username can't be blank
+    # Username must be unique
     # Username is too short (minimum is 4 characters)
     # Username cannot contain blank space numbers, special characters
     # Email can't be blank
