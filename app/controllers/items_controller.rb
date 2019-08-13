@@ -92,7 +92,7 @@ class ItemsController < ApplicationController
       erb :"/store/edit_item"
     else
             
-      redirect '/items/#{@item.id}'
+      redirect '/items'
     end
   end
 
