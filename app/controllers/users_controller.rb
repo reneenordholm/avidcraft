@@ -5,7 +5,7 @@ class UsersController < ApplicationController
         # does not let user view signup page if already logged in
         redirect '/items' if logged_in?
         
-        # sets value to @user so erb can check for errors
+        # set class variable for @user to new User instance so erb can check for errors
         @user = User.new
 
         erb :"users/create_user"
@@ -13,19 +13,20 @@ class UsersController < ApplicationController
 
      # create 
      post '/signup' do
-        # create user
-        # save user to db
+        # user instance is created and saved to db
         @user = User.create(username: params[:username], email: params[:email], password: params[:password])
 
         # if any validations from User raise an error
         if @user.errors.any?
             # adds user_id to sessions hash, creates cookie
             session[:user_id] = @user.id
+
             # presents create_user page again, uses cookie to show shows account creation errors
             erb :"users/create_user"
         else
             # successful object created-- adds user_id to sessions hash, creates cookie, effectively logging user in
             session[:user_id] = @user.id
+            
             # signup directs user to items index
             redirect '/items'
         end

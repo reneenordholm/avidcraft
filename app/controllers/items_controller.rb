@@ -2,46 +2,47 @@ require 'pry'
 
 class ItemsController < ApplicationController
 
-    # items index
-    get '/items' do
-        # does not load item index if user is not logged in
-        # does load items index if user is logged in
-        if logged_in?
-            # set instance variable as current_user via helper method
-            @user = current_user
-            # makes all items available via instance variable
-            @items = Item.all
+  # items index
+  get '/items' do
+    # does not load item index if user is not logged in
+    # does load items index if user is logged in
+    redirect '/' if !logged_in?
+
+    # set instance variable as current_user via helper method
+    @user = current_user
+
+    # makes all items available via instance variable
+    @items = Item.all
    
-            # loads items index
-            erb :"store/items"
-        else
-            redirect to '/'
-         end
-    end
+    # loads items index
+    erb :"store/items"
+  end
 
   # create
   get '/items/new' do
-    # user can view new item form if logged in
-    # user can create item if logged in
-    # user cannot view new item form if not logged in
-    if logged_in?
-      erb :"/store/new_item"
-    else
-      redirect '/'
-    end
+    # does not let user view new item page if not logged in
+    redirect '/' if !logged_in?
+
+    # set class variable for @item to new Item instance so erb can check for errors
+    @item = Item.new
+
+    erb :"/store/new_item"
   end
 
   # create
   post '/items' do
-    # does not let user create a blank item or leave any fields blank
-    if !params[:title].empty? && !params[:description].empty? && !params[:price].empty? && !params[:image].empty?
-      # item is saved as logged in user
-      item = Item.create(title: params[:title], description: params[:description], price: params[:price], user: current_user, image: params[:image])
-      item.save
-            
-      redirect '/items'
+    # item id is set as belonging to logged in user
+    # item instance is created and saved to db
+    @item = Item.create(title: params[:title], description: params[:description], price: params[:price], user: current_user, image: params[:image])
+      
+    # if any validations fail upon item creation raises an error in erb
+    if @item.errors.any?
+
+      # presents create_user page again, uses cookie to show shows account creation errors
+      erb :"/store/new_item"
     else
-      redirect to '/items/new_item'
+      # successful item object created, redirects user to list of all items
+      redirect '/items'
     end
   end
 
