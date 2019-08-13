@@ -102,9 +102,7 @@ class ItemsController < ApplicationController
     
     # allows user to delete item if logged in
     # does not let user delete item they did not create
-    if item.user_id == current_user.id
-      item.delete
-    end
+    item.delete if item.user_id == current_user.id
     
     # send user to item index after deletion
     # does not load/let user delete item if not logged in
