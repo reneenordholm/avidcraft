@@ -1,4 +1,17 @@
-<h1>Edit Your Item</h1>
+<h3>Edit Your Item</h3>
+
+<% if @item.errors.any? %>
+  <div id="error">
+    <h2><%= @item.errors.count %> error(s) prohibited the edit of your item :</h2>
+ 
+    <ul>
+    <% @item.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
 
 <form method="post" action="/items/<%= @item.id %>">
     <input id="hidden" type="hidden" name="_method" value="patch">
