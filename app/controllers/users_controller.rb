@@ -5,7 +5,7 @@ class UsersController < ApplicationController
         # does not let user view signup page if already logged in
         redirect '/items' if logged_in?
         
-        # set class variable for @user to new User instance so erb can check for errors
+        # set instance variable new User instance so erb can check for errors
         @user = User.new
 
         erb :"users/create_user"
@@ -26,7 +26,7 @@ class UsersController < ApplicationController
         else
             # successful object created-- adds user_id to sessions hash, creates cookie, effectively logging user in
             session[:user_id] = @user.id
-            
+
             # signup directs user to items index
             redirect '/items'
         end
@@ -63,10 +63,8 @@ class UsersController < ApplicationController
 
     # read
     get '/users/:slug' do
-        if !logged_in?
-            redirect '/'
-        end
-        # slugs username
+        redirect '/' if !logged_in?
+
         # finds user based on slug
         @user = User.find_by_slug(params[:slug])  
     

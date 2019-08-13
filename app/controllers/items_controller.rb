@@ -41,7 +41,7 @@ class ItemsController < ApplicationController
       erb :"/store/new_item"
     else
       # successful item object created, redirects user to list of all items created by user
-      redirect '/items/:id'
+      redirect '/items'
     end
   end
 
