@@ -27,6 +27,7 @@ class ApplicationController < Sinatra::Base
             # user cannot view item index if not logged in
             # user cannot view items by user/slug if not logged in
             # user cannot view new item page if not logged in
+            # user cannot view individual items if not logged in
             def authenticate
                 redirect '/' if !logged_in?
             end

@@ -47,10 +47,7 @@ class ItemsController < ApplicationController
     # does not trigger erb if statement on page load since accessed through get route
     @failed = false
 
-    # if not logged in redirects user to home page
-    # logged in user can view a single item
-    # logged out user cannot view a single item
-    redirect '/' if !logged_in?
+    authenticate
 
     # sets item id to instance variable so that items's data can be viewed in erb
     @item = Item.find_by_id(params[:id])
