@@ -5,7 +5,7 @@ class UsersController < ApplicationController
         # does not let user view signup page if already logged in
         redirect '/items' if logged_in?
         
-        # set instance variable new User instance so erb can check for errors
+        # set instance variable to new User instance so erb can check for errors
         @user = User.new
 
         erb :"users/create_user"

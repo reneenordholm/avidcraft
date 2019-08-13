@@ -9,7 +9,7 @@
 <p>About this Item:
 <pre><%= @item.description %></pre></p>
 
-Created by <a href="/users/<%= @item.user.username %>"><%= @item.user.username %></a>
+Created by <a href="/users/<%= @item.user.username %>"><%= @item.user.username %></a> || <a href="mailto:<%= @item.user.email %>">Click here</a> to email the artist.
 
 <% if @item.user_id == current_user.id %>
 <form action="/items/<%= @item.id %>/edit" method="get">
