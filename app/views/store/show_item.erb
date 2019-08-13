@@ -1,3 +1,9 @@
+<% if @failed %>
+	<div id="error">
+		<p class="error">You cannot edit another user's item</p>
+	</div>
+<% end %>
+
 <h3><%= @item.title %> | $<%= @item.price %></h3>
 <img src="<%= @item.image %>" width=400>
 <p>About this Item:
@@ -5,7 +11,7 @@
 
 Created by <a href="/users/<%= @item.user.username %>"><%= @item.user.username %></a>
 
-
+<% if @item.user_id == current_user.id %>
 <form action="/items/<%= @item.id %>/edit" method="get">
   <p><input type="submit" value="Edit Item"></p>
 </form>
@@ -14,6 +20,7 @@ Created by <a href="/users/<%= @item.user.username %>"><%= @item.user.username %
   <input id="hidden" type="hidden" name="_method" value="DELETE">
   <input type="submit" value="Delete Item">
 </form>
+<% end %>
 
 <br><br>
 <a href="/items">Go back</a> to item index

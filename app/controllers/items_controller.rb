@@ -47,6 +47,9 @@ class ItemsController < ApplicationController
 
   # read
   get '/items/:id' do
+    # does not trigger erb if statement on page load since accessed through get route
+    @failed = false
+
     # if not logged in redirects user to home page
     # logged in user can view a single item
     # logged out user cannot view a single item
@@ -70,9 +73,11 @@ class ItemsController < ApplicationController
       #renders edit item form
       erb :"store/edit_item"
     else
-
+      # triggers if statement at page load, since accessed through post route
+      @failed = true
+      
       # redirects to index if user not logged in/not user's item
-      redirect '/'
+      erb :"store/show_item"
     end
   end
 
