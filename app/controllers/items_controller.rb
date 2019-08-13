@@ -2,9 +2,7 @@ class ItemsController < ApplicationController
 
   # items index
   get '/items' do
-    # does not load item index if user is not logged in
-    # does load items index if user is logged in
-    redirect '/' if !logged_in?
+    authenticate
 
     # set instance variable as current_user via helper method
     @user = current_user
@@ -18,8 +16,7 @@ class ItemsController < ApplicationController
 
   # create
   get '/items/new' do
-    # does not let user view new item page if not logged in
-    redirect '/' if !logged_in?
+    authenticate
 
     # set instance variable for @item to new Item instance so erb can check for errors
     @item = Item.new

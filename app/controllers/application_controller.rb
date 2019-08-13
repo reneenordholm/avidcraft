@@ -23,5 +23,12 @@ class ApplicationController < Sinatra::Base
             def current_user
                 User.find(session[:user_id])
             end
+
+            # user cannot view item index if not logged in
+            # user cannot view items by user/slug if not logged in
+            # user cannot view new item page if not logged in
+            def authenticate
+                redirect '/' if !logged_in?
+            end
         end
 end

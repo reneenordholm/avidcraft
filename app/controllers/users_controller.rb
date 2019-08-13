@@ -63,7 +63,7 @@ class UsersController < ApplicationController
 
     # read
     get '/users/:slug' do
-        redirect '/' if !logged_in?
+        authenticate
 
         # finds user based on slug
         @user = User.find_by_slug(params[:slug])  
