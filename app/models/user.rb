@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
     has_many :items
 
     # Password can't be blank
-    # Password must be betweem 6-20 characters
+    # Password must be between 6-20 characters
     # Username can't be blank
     # Username must be unique
     # Username minimum length is 4 characters.
