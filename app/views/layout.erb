@@ -2,10 +2,80 @@
 <html>
 <head>
     <link rel="stylesheet" href="/style.css">
+    <style>
+        .content {
+            max-width: 500px;
+            margin: auto;
+        }
+
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 0px;
+            text-align: left;
+            padding: 4px;
+        }
+
+        p {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        pre {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        h3 {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        h2 {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        #error { 
+            color: red;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .center {
+            text-align:center
+        }
+
+        .left {
+            text-align:left
+        }
+
+        .right {
+            text-align:right
+        }
+    </style>
     <title>AVIDcraft || A Space to Create</title>
 </head>
 <body>
-<img src="/photos/logo.png" width=300>
-<%= yield %>
+
+    <table>
+    <tr>
+        <td><a href='/'><img src="/photos/logo.png" width=300></a></td>
+        <td>
+    	    <% if logged_in? %>
+                <p class="center">Hello, <%= current_user.username %>!<br>
+                <a href='/items'><img src="/photos/browse.png" width=90></a> <a href="/logout"><img src="/photos/signout.png" width=75></a></p>
+            <% else %>
+                <p class="center">Hi there!<br>
+                <a href="/login"><img src="/photos/signin.png" width=75></a> <a href="/signup"><img src="/photos/signup.png" width=73></a></p>
+            <% end %>  
+        </td>
+    </tr>
+    </table>
+
+    
+    
+    <div class="content">
+        <%= yield %>
+    </div>
 </body>
 </html>

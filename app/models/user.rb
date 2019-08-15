@@ -10,8 +10,8 @@ class User < ActiveRecord::Base
     # Username cannot contain blank space numbers, special characters
     # Email can't be blank
     # Email must be in format xxxx@xxxx.xxx
-    validates :username, presence: true, uniqueness: true, length: { minimum: 4 }, format: { with: /\A[a-zA-Z]+\z/, message: "cannot contain blank space numbers, special characters" }
-    validates :email, presence: true, format: { with: /A[^@s] @[^@s] z/, message: "must be in format xxxx@xxxx.xxx"}
+    validates :username, presence: true, uniqueness: true, length: { minimum: 4 }, format: { with: /\A[a-zA-Z]+\z/, message: "cannot contain blank space, numbers, or special characters" }
+    validates :email, presence: true, format: { with: /[^@]+@[^\.]+\..+/, message: "must be in format xxxx@xxxx.xxx"}
     validates :password, presence: true, length: { in: 6..20 }
 
     # slugs the username

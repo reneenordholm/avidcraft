@@ -13,7 +13,7 @@
 <% end %>
 
   <form action='/items' method="post">
-    <label for="title">Title:</label>
+    <p><label for="title">Title:</label>
     <input type="text" id="title" name="title" value="<%= @item.title %>"><br><br>
 
     <label for="description">Enter a few sentences that describe your item:</label><br>
@@ -25,10 +25,10 @@
     <label for="image">Link to Image:</label><br>
     <input type="text" id="image" name="image" size="47" value="<%= @item.image %>"><br><br>
 
-    <input type="submit" value="Submit">
+    <input type="submit" value="Submit"></p>
   </form>
-<br>
-  <a href="/items">Go back</a> to items index
+  
+<p class="center"><a href="/items">Browse All Items</a> || <a href='/'>Main Page</a></p>
 
 
  

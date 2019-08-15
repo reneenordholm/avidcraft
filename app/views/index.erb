@@ -1,8 +1,12 @@
 <h3>Welcome to AVIDcraft!</h3>
+<p> A space to create.  At AVIDcraft you can connect and share with other creators around the world.  Create an account today to gain access to all the features AVIDcraft has to offer!</p>
 
 <% if logged_in? %>
     <p> You are logged in as <%= current_user.username %><br><br>
-    Go to <a href='/items'>Items Index</a> or <a href="/logout">log izzout</a></p>
+    Browse <a href='/items'>all items</a> or <a href="/logout">log izzout</a></p>
 <% else %>
-    <p>You are not logged in. To view Items Index, please <a href="/login">log in</a> or <a href="/signup">sign up</a></p>
+    <p>You are not logged in. <br><br>
+    To gain access, please <a href="/login">sign in</a> or <a href="/signup">create an account</a>.</p>
 <% end %>
+
+</div>

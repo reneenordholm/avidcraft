@@ -1,18 +1,21 @@
 <h3>Login to AVIDcraft</h3>
 
+<p>Please enter your credentials below to access AVIDcraft.</p>
+
 <% if @failed %>
 	<div id="error">
-		<p class="error">Username/Password combo incorrect.</p>
+		<p>Username/Password combo incorrect.</p>
 	</div>
 <% end %>
 
 <form action="/login" method="POST">
-	<label for="username">Username:</label><br>
-	<input type="text" id="username" name="username" placeholder="Username:"><br><br>
+	<p><label for="username">Username:</label><br>
+	<input type="text" id="username" name="username" ><br><br>
 	
 	<label for="password">Password:</label><br>
-	<input type="password" it="password" name="password" placeholder="Password:"><br><br>
-	<input type="submit" value="submit">
+	<input type="password" it="password" name="password"><br><br>
+
+	<button type="submit" alt="Sign In"><img src="/photos/signin.png" width=55></button></p>
 </form>
-<br><br>
-Go back to <a href='/'>Main Page</a>
+<br>
+<p class="center">Go back to <a href='/'>Main Page</a></p>

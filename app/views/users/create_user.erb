@@ -1,8 +1,8 @@
-<h1>Sign Up Below:</h1>
+<h3>Sign Up Below:</h3>
 
 <% if @user.errors.any? %>
   <div id="error">
-    <h2><%= @user.errors.count %> error(s) prohibited account creation:</h2>
+    <h3><%= @user.errors.count %> error(s) prohibited account creation:</h3>
  
     <ul>
     <% @user.errors.full_messages.each do |msg| %>
@@ -13,16 +13,17 @@
 <% end %>
 
 <form action='/signup' method='post'>
-    <p><label for="username">Username: </label>
-    <input type="text" name="username" value="<%= @user.username %>"/><br>
+    <p><label for="username">Username: </label><br>
+    <input type="text" name="username" value="<%= @user.username %>"><br><br>
 
-    <label for="email">Email Address: </label>
-    <input type="text" name="email" value="<%= @user.email %>"/><br>
+    <label for="email">Email Address: </label><br>
+    <input type="text" name="email" value="<%= @user.email %>"><br><br>
 
-    <label for="password">Password: </label>
-    <input type="text" name="password" /><br>
+    <label for="password">Password: </label><br>
+    <input type="text" name="password"><br><br>
 
-    <input type="submit" value="Sign Up" /></p>
+    <button type="submit" alt="Sign In"><img src="/photos/signup.png" width=55></button></p>
 </form>
 
-<br><br><a href='/'>Return Home</a>
+<br>
+<p class="center">Go back to <a href='/'>Main Page</a></p>

@@ -1,9 +1,9 @@
 <h3>All items for <em><%= @user.username %></em>:</h3>
 <ul>
 <% @user.items.each do |item| %>
-  <li><a href="/items/<%= item.id %>"><%= item.title %></a></li>
+  <li><p><a href="/items/<%= item.id %>"><%= item.title %></a></p></li>
 <% end %>
 </ul>
 
-<a href="/items">Go Back</a> to items index
+<p class="center"><a href="/items">Browse All Items</a> || <a href='/'>Main Page</a></p>
 

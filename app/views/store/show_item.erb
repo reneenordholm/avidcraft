@@ -1,7 +1,21 @@
 <% if @failed %>
 	<div id="error">
-		<p class="error">You cannot edit another user's item</p>
+		<p>You cannot edit another user's item</p>
 	</div>
+<% end %>
+
+<% if @item.user_id == current_user.id %>
+<table>
+  <tr>
+    <td><form action="/items/<%= @item.id %>/edit" method="get"><p class="right">Item Options: 
+      <button type="submit" alt="Edit Item"><img src="/photos/edit.png" width=55></button>
+        </p></form></td>
+    <td><form method="POST" action="/items/<%= @item.id %>"><p class="left">
+      <input id="hidden" type="hidden" name="_method" value="DELETE">
+      <button type="submit" alt="Delete Item"><img src="/photos/delete.png" width=55></button>
+      </p></form></td>
+  </tr>
+</table>
 <% end %>
 
 <h3><%= @item.title %> | $<%= @item.price %></h3>
@@ -9,18 +23,7 @@
 <p>About this Item:
 <pre><%= @item.description %></pre></p>
 
-Created by <a href="/users/<%= @item.user.username %>"><%= @item.user.username %></a> || <a href="mailto:<%= @item.user.email %>">Click here</a> to email the artist.
+<p class="center">Created by <a href="/users/<%= @item.user.username %>"><%= @item.user.username %></a>
+<br><br><a href="mailto:<%= @item.user.email %>">Click here</a> to email the artist.</p>
 
-<% if @item.user_id == current_user.id %>
-<form action="/items/<%= @item.id %>/edit" method="get">
-  <p><input type="submit" value="Edit Item"></p>
-</form>
-
-<form method="POST" action="/items/<%= @item.id %>">
-  <input id="hidden" type="hidden" name="_method" value="DELETE">
-  <input type="submit" value="Delete Item">
-</form>
-<% end %>
-
-<br><br>
-<a href="/items">Go back</a> to item index
+<p class="center"><a href="/items">Browse All Items</a> || <a href='/'>Main Page</a></p>
