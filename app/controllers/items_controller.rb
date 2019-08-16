@@ -38,7 +38,7 @@ class ItemsController < ApplicationController
       erb :"/store/new_item"
     else
       # successful item object created, redirects user to list of all items created by user
-      redirect '/items'
+      erb :"store/show_item"
     end
   end
 
@@ -90,8 +90,8 @@ class ItemsController < ApplicationController
       # presents edit item page again with errors listed
       erb :"/store/edit_item"
     else
-            
-      redirect '/items'
+       
+      erb :"store/show_item"
     end
   end
 
