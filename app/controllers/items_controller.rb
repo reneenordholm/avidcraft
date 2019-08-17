@@ -52,13 +52,20 @@ class ItemsController < ApplicationController
     # sets item id to instance variable so that items's data can be viewed in erb
     @item = Item.find_by_id(params[:id])
 
+    if @item.nil?
+      redirect '/items'
+    else 
+
     erb :"store/show_item"
+    end
   end
 
   # update
   get '/items/:id/edit' do
     # sets item id to instance variable to that item's data can be viewed/edited
     @item = Item.find_by(id: params[:id])
+
+    authenticate
 
     # user cannot edit an item they did not create
     # user can edit their own item if logged in
