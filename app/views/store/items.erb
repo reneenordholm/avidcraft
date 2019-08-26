@@ -1,11 +1,22 @@
-<h3>Items Index</h3>
+<% if @search %>
+	<h3>Showing items matching '<%= @word %>':</h3>
+    <% else %>
+    <h3>Items Index</h3>
+    <p>Welcome, <%= @user.username %>! Here's all the Items:<br>
+<% end %>
 
-<p>Welcome, <%= @user.username %>! Here's all the Items:<br>
+
 
 <% @items.each do |item| %>
 <p><a href="/items/<%= item.id %>"><%= item.title %></a> by <em>
 <a href="/users/<%= item.user.username %>"><%= item.user.username %></a></em></p>
-<% end %>
+<% end %><br><br>
+
+<form action='/items/search' method="post">
+    <p><label for="search">Search for an item:</label>
+    <input type="text" id="search" name="search">
+    <input type="submit"></p>
+</form>
 <br><br>
 <p class="center"><a href="/items/new">Create New Item</a></p>
 <p class="center">Go back to <a href='/'>Main Page</a></p>

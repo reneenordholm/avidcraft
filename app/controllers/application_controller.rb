@@ -8,28 +8,35 @@ class ApplicationController < Sinatra::Base
       end
 
     get '/' do
-
-        # loads the homepage
+        
         erb :index
-      end
+    end
     
-      helpers do
-        # checks if user is logged in
-            def logged_in?
-                !!session[:user_id]
-            end
-    
-        # pulls from session hash to determine the current user
-            def current_user
-                User.find(session[:user_id])
-            end
+    helpers do
 
-            # user cannot view item index if not logged in
-            # user cannot view items by user/slug if not logged in
-            # user cannot view new item page if not logged in
-            # user cannot view individual items if not logged in
-            def authenticate
-                redirect '/' if !logged_in?
-            end
+        def logged_in?
+            !!session[:user_id]
         end
+
+        def current_user
+            User.find(session[:user_id])
+        end
+
+        def authenticate
+            redirect '/' if !logged_in?
+        end
+
+
+        def clean_params(params)
+            np = params.dup
+            params.each do |k,v|
+                np[k] = Rack::Utils.escape_html(v)
+            end
+            np
+        end
+    end 
+
+        # not_found do
+        #     "Whhaaaattt???"
+        # end
 end
