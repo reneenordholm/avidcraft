@@ -45,9 +45,9 @@ class ItemsController < ApplicationController
   end
 
   patch '/items/:id' do
-    @item = Item.find_by(id: clean_params[:id])
+    @item = Item.find_by(id: params[:id])
     # not_found if !@item
-    @item.update(title: clean_params[:title], description: clean_params[:description], price: clean_params[:price], image: clean_paramsv[:image])
+    @item.update(title: params[:title], description: params[:description], price: params[:price], image: params[:image])
             
     if @item.errors.any?
       erb :"/store/edit_item"
@@ -57,7 +57,7 @@ class ItemsController < ApplicationController
   end
 
   delete '/items/:id' do
-    item = Item.find_by_id(clean_params[:id])
+    item = Item.find_by_id(params[:id])
     item.delete if item.user_id == current_user.id
     
     redirect '/items'

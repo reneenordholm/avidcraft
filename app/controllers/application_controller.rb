@@ -26,7 +26,6 @@ class ApplicationController < Sinatra::Base
             redirect '/' if !logged_in?
         end
 
-
         def clean_params(params)
             np = params.dup
             params.each do |k,v|
